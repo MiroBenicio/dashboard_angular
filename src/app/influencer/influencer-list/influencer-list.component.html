@@ -1,0 +1,33 @@
+<div>
+  <table mat-table [dataSource]="influencers" color="primary">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>id</th>
+      <td mat-cell *matCellDef="let influencer">{{ influencer.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>nome</th>
+      <td mat-cell *matCellDef="let influencer">{{ influencer.nome }}</td>
+    </ng-container>
+    <ng-container matColumnDef="inscritos">
+      <th mat-header-cell *matHeaderCellDef>inscritos</th>
+      <td mat-cell *matCellDef="let influencer">
+        {{ influencer.numero_inscritos }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="canal">
+      <th mat-header-cell *matHeaderCellDef>canal</th>
+      <td mat-cell *matCellDef="let influencer">{{ influencer.canal }}</td>
+    </ng-container>
+    <ng-container matColumnDef="plataforma">
+      <th mat-header-cell *matHeaderCellDef>plataforma</th>
+      <td mat-cell *matCellDef="let influencer">{{ influencer.plataforma }}</td>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef>categoria</th>
+      <td mat-cell *matCellDef="let influencer">{{ influencer.categoria }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+</div>
