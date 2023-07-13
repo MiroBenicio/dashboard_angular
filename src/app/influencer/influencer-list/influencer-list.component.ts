@@ -20,6 +20,7 @@ export class InfluencerListComponent implements OnInit {
     'canal',
     'plataforma',
     'categoria',
+    'actions',
   ];
 
   dataSource!: MatTableDataSource<Influencer>;
