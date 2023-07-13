@@ -25,4 +25,17 @@ export class InfluencerService {
   postInfluencer(data: Influencer) {
     return this.http.post<Influencer[]>(this.apiUrl, data, this.requestOptions);
   }
+
+  putInfluencer(data: Influencer, id: number) {
+    console.log('teste', data);
+    return this.http.put<Influencer[]>(
+      this.apiUrl + `/${id}`,
+      data,
+      this.requestOptions
+    );
+  }
+
+  deleteInfluencer(id: number) {
+    return this.http.delete<any>(this.apiUrl + `/${id}`, this.requestOptions);
+  }
 }

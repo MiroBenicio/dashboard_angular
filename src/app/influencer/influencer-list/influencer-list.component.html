@@ -1,3 +1,12 @@
+<mat-toolbar color="warn">
+  <span>Influencer DashBoard</span>
+  <span class="example-spacer"></span>
+  <button mat-button color="white" (click)="openDialog()">
+    <mat-icon>account_circle</mat-icon>
+    Cadastrar Influencer
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>
 <div class="container">
   <div class="" style="margin-top: 10px">
     <mat-form-field class="filter" color="accent">
@@ -54,7 +63,11 @@
             >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteInfluencer(row.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </td>

@@ -7,7 +7,3 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-
-.example-spacer {
-  flex: 1 1 auto;
-}

@@ -45,20 +45,39 @@ export class DialogComponent implements OnInit {
   }
 
   addInfluencer() {
-    if (this.influencerForm.valid) {
-      console.log('teste');
-      this.influencerService
-        .postInfluencer(this.influencerForm.value)
-        .subscribe({
-          next: (res) => {
-            alert('Influencer Adicionado com Sucesso');
-            this.influencerForm.reset();
-            this.dialogRef.close();
-          },
-          error: () => {
-            alert('Erro: Confira os campos preenchidos');
-          },
-        });
+    if (!this.editData) {
+      if (this.influencerForm.valid) {
+        console.log('teste');
+        this.influencerService
+          .postInfluencer(this.influencerForm.value)
+          .subscribe({
+            next: (res) => {
+              alert('Influencer Adicionado com Sucesso');
+              this.influencerForm.reset();
+              this.dialogRef.close();
+            },
+            error: () => {
+              alert('Erro: Confira os campos preenchidos');
+            },
+          });
+      }
+    } else {
+      this.atualizarInfluencer();
     }
+  }
+
+  atualizarInfluencer() {
+    this.influencerService
+      .putInfluencer(this.influencerForm.value, this.editData.id)
+      .subscribe({
+        next: (res) => {
+          alert('Influencer Atualizado com Sucesso');
+          this.influencerForm.reset();
+          this.dialogRef.close('update');
+        },
+        error: () => {
+          alert('Erro ao Atualizar: Confira os campos preenchidos');
+        },
+      });
   }
 }

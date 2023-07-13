@@ -48,10 +48,39 @@ export class InfluencerListComponent implements OnInit {
       },
     });
   }
+
+  openDialog(): void {
+    this.dialog
+      .open(DialogComponent, {
+        width: '40%',
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        this.getInfluencers();
+      });
+  }
+
   editInfluencer(row: Influencer): void {
-    this.dialog.open(DialogComponent, {
-      width: '40%',
-      data: row,
+    this.dialog
+      .open(DialogComponent, {
+        width: '40%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        this.getInfluencers();
+      });
+  }
+
+  deleteInfluencer(id: number) {
+    this.influencerService.deleteInfluencer(id).subscribe({
+      next: (res) => {
+        alert('Influencer Excluído');
+        this.getInfluencers();
+      },
+      error: () => {
+        alert('Erro ao Excluir');
+      },
     });
   }
   applyFilter(event: Event) {
