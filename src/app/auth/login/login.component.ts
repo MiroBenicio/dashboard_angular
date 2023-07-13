@@ -23,14 +23,15 @@ export class LoginComponent implements OnInit {
   senha = '';
 
   login(): void {
-    this.authService.login(this.email, this.senha).subscribe((res) => {
-      let response = JSON.parse(JSON.stringify(res));
-      if (response.status === 200) {
-        console.log('teste');
+    this.authService.login(this.email, this.senha).subscribe({
+      next: (res) => {
+        let response = JSON.parse(JSON.stringify(res));
         this.storageService.set('token', response.data);
         this.router.navigate(['influencerList']);
-        return;
-      }
+      },
+      error: () => {
+        alert('Email ou Senha Inválidos');
+      },
     });
   }
   ngOnInit(): void {}
