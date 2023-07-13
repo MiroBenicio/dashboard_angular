@@ -1,30 +1,41 @@
 <h1 mat-dialog-title>Adicionar Influencer</h1>
 <div mat-dialog-content>
-  <form action="" [formGroup]="influencerForm"></form>
-  <mat-form-field appearance="outline" color="warn">
-    <mat-label>Nome do Influencer</mat-label>
-    <input matInput placeholder="Nome" formControlName="nome" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="warn">
-    <mat-label>@ do Canal</mat-label>
-    <input matInput placeholder="Canal" formControlName="canal" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="warn">
-    <mat-label>Número de Inscritos</mat-label>
-    <input matInput placeholder="Inscritos" formControlName="numeroInscritos" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="warn">
-    <mat-label>Plataforma</mat-label>
-    <input matInput placeholder="Plataforma" formControlName="plataforma" />
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="warn">
-    <mat-label>Categoria</mat-label>
-    <input matInput placeholder="Categoria" formControlName="categoria" />
-  </mat-form-field>
+  <form action="" [formGroup]="influencerForm">
+    <mat-form-field appearance="outline" color="warn">
+      <mat-label>Nome do Influencer</mat-label>
+      <input matInput placeholder="Nome" formControlName="nome" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="warn">
+      <mat-label>@ do Canal</mat-label>
+      <input matInput placeholder="Canal" formControlName="canal" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="warn">
+      <mat-label>Número de Inscritos</mat-label>
+      <input
+        matInput
+        placeholder="Inscritos"
+        formControlName="numero_inscritos"
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="warn">
+      <mat-label>Plataforma</mat-label>
+      <input matInput placeholder="Plataforma" formControlName="plataforma" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="warn">
+      <mat-label>Categoria</mat-label>
+      <input matInput placeholder="Categoria" formControlName="categoria" />
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-action [align]="'end'">
   <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
-  <button mat-raised-button color="warn" style="margin-left: 16px">
+  <button
+    mat-raised-button
+    color="warn"
+    style="margin-left: 16px"
+    (click)="addInfluencer()"
+  >
     Salvar
   </button>
 </div>

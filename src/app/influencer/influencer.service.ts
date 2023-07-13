@@ -9,11 +9,7 @@ import { Influencer } from '../Influencer';
   providedIn: 'root',
 })
 export class InfluencerService {
-  constructor(
-
-    private http: HttpClient,
-    private storage: LocalStorageService
-  ) {}
+  constructor(private http: HttpClient, private storage: LocalStorageService) {}
   private apiUrl = 'http://localhost:3000/influenciadores';
   private token = this.storage.get('token');
 
@@ -24,5 +20,9 @@ export class InfluencerService {
   getAll(): Observable<Influencer[]> {
     console.log('teste,', this.token);
     return this.http.get<Influencer[]>(this.apiUrl, this.requestOptions);
+  }
+
+  postInfluencer(data: Influencer) {
+    return this.http.post<Influencer[]>(this.apiUrl, data, this.requestOptions);
   }
 }
