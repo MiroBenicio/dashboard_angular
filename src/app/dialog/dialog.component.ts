@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InfluencerService } from '../influencer/influencer.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Influencer } from '../Influencer';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
@@ -10,10 +12,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogComponent implements OnInit {
   influencerForm!: FormGroup;
-
+  acaoBotao: string = 'Salvar';
   constructor(
     private formBuilder: FormBuilder,
     private influencerService: InfluencerService,
+    @Inject(MAT_DIALOG_DATA) public editData: Influencer,
     private dialogRef: MatDialogRef<DialogComponent>
   ) {}
 
@@ -25,6 +28,20 @@ export class DialogComponent implements OnInit {
       plataforma: ['', Validators.required],
       categoria: ['', Validators.required],
     });
+    if (this.editData) {
+      this.acaoBotao = 'Atualizar';
+      this.influencerForm.controls['nome'].setValue(this.editData.nome);
+      this.influencerForm.controls['canal'].setValue(this.editData.canal);
+      this.influencerForm.controls['numero_inscritos'].setValue(
+        this.editData.numero_inscritos
+      );
+      this.influencerForm.controls['plataforma'].setValue(
+        this.editData.plataforma
+      );
+      this.influencerForm.controls['categoria'].setValue(
+        this.editData.categoria
+      );
+    }
   }
 
   addInfluencer() {

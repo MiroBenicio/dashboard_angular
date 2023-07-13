@@ -4,6 +4,8 @@ import { InfluencerService } from '../influencer.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-influencer-list',
@@ -28,7 +30,10 @@ export class InfluencerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private influencerService: InfluencerService) {
+  constructor(
+    private influencerService: InfluencerService,
+    private dialog: MatDialog
+  ) {
     this.getInfluencers();
   }
   columns = ['id', 'nome', 'inscritos', 'canal', 'plataforma', 'categoria'];
@@ -41,6 +46,12 @@ export class InfluencerListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
+    });
+  }
+  editInfluencer(row: Influencer): void {
+    this.dialog.open(DialogComponent, {
+      width: '40%',
+      data: row,
     });
   }
   applyFilter(event: Event) {
