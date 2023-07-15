@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InfluencerListComponent } from './influencer/influencer-list/influencer-list.component';
-import { InfluencerFormComponent } from './influencer/influencer-form/influencer-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,12 +31,7 @@ const appRoutes: Routes = [
     component: InfluencerListComponent,
     data: { title: 'Lista dos Influencers' },
   },
-  {
-    path: 'influencerForm',
-    component: InfluencerFormComponent,
-    data: { title: 'Cadastro de Influencers' },
-  },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/influencerList', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -45,7 +39,6 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     InfluencerListComponent,
-    InfluencerFormComponent,
     DialogComponent,
   ],
   imports: [
